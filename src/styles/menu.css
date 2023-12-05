@@ -1,0 +1,123 @@
+.theme_item_container {
+    flex-shrink: 0;
+    flex: 1 0 0px;
+    width: 1px;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.theme_circle {
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--var-block);
+    overflow: hidden;
+    position: relative;
+    padding: 0px 0px 0px 0px;
+    align-content: center;
+    flex-wrap: nowrap;
+    border-radius: 100px;
+}
+
+.theme_text {
+    text-align: center;
+    opacity: 0.6;
+}
+
+.theme_enabled_text {
+    opacity: 1;
+}
+
+.switcher_body {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 52px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px 3px 0px 3px;
+    background-color: var(--var-switcher-bg);
+    overflow: visible;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    border-radius: 27px;
+    cursor: pointer;
+}
+
+.switcher {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: block;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+    overflow: visible;
+    position: relative;
+    border-radius: 80px;
+
+    transition: transform 0.25s ease;
+    transform: translateX(2%);
+}
+
+.active-switcher {
+    transform: translateX(89%);
+}
+
+.exit_button {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 20px 13px 20px;
+    background-color: var(--var-elements);
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.15s ease-in-out;
+}
+
+@media (pointer: fine) {
+.exit_button:hover {
+    background-color: rgba(255, 0, 0, 0.07);
+}
+}
+
+.exit_button:active {
+    background-color: rgba(255, 0, 0, 0.14);
+}
+
+.exit_text {
+    color: var(--var-red);
+    text-align: center;
+    user-select: none;
+}
+
+
+@media (max-width: 600px) {
+    .theme_circle {
+        width: 60px;
+        height: 60px;
+    }
+}

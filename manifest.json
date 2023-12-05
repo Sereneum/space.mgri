@@ -1,0 +1,22 @@
+{
+	"short_name": "Space МГРИ",
+	"name": "Space МГРИ",
+	"icons": [
+		{
+			"src": "./favicon/apple-touch-icon.png",
+			"type": "image/png",
+			"sizes": "192x192",
+			"purpose": "maskable"
+		},
+		{
+			"src": "./favicon/apple-touch-icon.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "maskable"
+		}
+	],
+	"start_url": ".",
+	"display": "standalone",
+	"background_color": "#000000",
+	"theme_color": "#000000"
+}
