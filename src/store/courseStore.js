@@ -24,3 +24,12 @@ export default class CourseStore {
     return this._activeCourse;
   }
 }
+
+// const courseStore = makeAutoObservable({
+//   courses: [],
+//   activeCourse: 0,
+//   setCourses(courses) {
+//     this.activeCourse = 0;
+//     this.courses = courses;
+//   },
+// });

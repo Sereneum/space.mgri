@@ -11,7 +11,7 @@ import Sky from './components/sky/Sky.jsx';
 import Header from './components/header/Header.js';
 import Courses from './components/courses_block/Courses.js';
 import Deadline from './components/deadline_block/Deadline.js';
-import { Context } from './index';
+import { Context } from './index.jsx';
 import useApp from './hooks/useApp.js';
 import { themeManager } from './managers/themeManager.js';
 import useThemeDetector from './hooks/useThemeDetector.js';
@@ -28,40 +28,40 @@ const App = observer(() => {
 
   if (isLoading) {
     return (
-			<CSSTransition
-				in={isLoading}
-				timeout={300}
-				classNames='preloader'
-				unmountOnExit
-			>
-				<Preloader
-					isLoading={isLoading}
-					isThemeDetector={isThemeDetector}
-					isError={isError}
-				/>
-			</CSSTransition>
+      <CSSTransition
+        in={isLoading}
+        timeout={300}
+        classNames="preloader"
+        unmountOnExit
+      >
+        <Preloader
+          isLoading={isLoading}
+          isThemeDetector={isThemeDetector}
+          isError={isError}
+        />
+      </CSSTransition>
     );
   }
 
   return (
-		<div className='App'>
-			<style>{smoothTsManager(localConfig).getStyle()}</style>
+    <div className="App">
+      <style>{smoothTsManager(localConfig).getStyle()}</style>
 
-			<ScrollToTop />
+      <ScrollToTop />
 
-			{localConfig.sky.value && (
-				<Sky isLight={themeManager(localConfig).isLight()} />
-			)}
+      {localConfig.sky.value && (
+        <Sky isLight={themeManager(localConfig).isLight()} />
+      )}
 
-			<div className='main_container'>
-				<Header isAuth={isAuth} />
-				<main className='content_container'>
-					{isAuth && <Courses />}
-					<ProjectRoutes isAuth={isAuth} />
-					{isAuth && <Deadline />}
-				</main>
-			</div>
-		</div>
+      <div className="main_container">
+        <Header isAuth={isAuth} />
+        <main className="content_container">
+          {isAuth && <Courses />}
+          <ProjectRoutes isAuth={isAuth} />
+          {isAuth && <Deadline />}
+        </main>
+      </div>
+    </div>
   );
 });
 

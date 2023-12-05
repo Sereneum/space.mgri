@@ -1,7 +1,8 @@
+/* eslint-disable import/extensions */
 import { useContext, useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { Context } from '../../index';
-import { epoch_getMinorUserData, epoch_schedule } from '../../http/epochServer';
+import { Context } from '../../index.jsx';
+import { epoch_getMinorUserData, epoch_schedule } from '../../http/epochServer.js';
 import ScheduleController from './ScheduleController';
 import ScheduleWeek from './ScheduleWeek';
 import { pointToSlash } from '../../managers/timeManager';
@@ -22,7 +23,9 @@ const Schedule = observer(() => {
     const isEmptyMinor = !Object.keys(user.minorUserData).length;
     const isCalendar = !!Object.keys(user.calendar).length;
 
-    if (isEmptyMinor) { await epoch_getMinorUserData(id).then((r) => user.setMinorUserData(r.data.data)); }
+    if (isEmptyMinor) {
+      await epoch_getMinorUserData(id).then((r) => user.setMinorUserData(r.data.data));
+    }
 
     const groupID = user.minorUserData.group.item2;
 
@@ -37,7 +40,7 @@ const Schedule = observer(() => {
     if (!week) { week = pointToSlash(new Date()); }
     user.setWeekID(week);
     sequence(week)
-      .then((r) => {});
+      .then((r) => { });
   };
 
   useEffect(() => {
@@ -55,34 +58,34 @@ const Schedule = observer(() => {
 
   if (isLoading) {
     return (
-			<div className='block'>
-				<div className='title_container'>
-					<h1>Расписание</h1>
-				</div>
-				<LoaderSchedule />
-			</div>
+      <div className='block'>
+        <div className='title_container'>
+          <h1>Расписание</h1>
+        </div>
+        <LoaderSchedule />
+      </div>
     );
   }
 
   return (
-		<div className={'block'} style={{ overflow: 'visible' }}>
-			{/* TITLE */}
-			<div className='title_container'>
-				<h1>Расписание</h1>
-			</div>
+    <div className={'block'} style={{ overflow: 'visible' }}>
+      {/* TITLE */}
+      <div className='title_container'>
+        <h1>Расписание</h1>
+      </div>
 
-			{/* SCHEDULE CONTROL BLOCK */}
-			<ScheduleController
-				weekID={user.weekID}
-				updateWeek={updateWeek}
-				calendar={user.calendar}
-			/>
+      {/* SCHEDULE CONTROL BLOCK */}
+      <ScheduleController
+        weekID={user.weekID}
+        updateWeek={updateWeek}
+        calendar={user.calendar}
+      />
 
-			{/* SCHEDULE WEEK BLOCK */}
-			<ScheduleWeek weekData={user.weekData} />
+      {/* SCHEDULE WEEK BLOCK */}
+      <ScheduleWeek weekData={user.weekData} />
 
-			{/* end block */}
-		</div>
+      {/* end block */}
+    </div>
   );
 });
 
