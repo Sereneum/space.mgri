@@ -32,5 +32,7 @@ module.exports = {
         'warn',
         { allowConstantExport: true },
       ],
+      'import/prefer-default-export': 0,
+      'react/prop-types': 0,
     },
   }
