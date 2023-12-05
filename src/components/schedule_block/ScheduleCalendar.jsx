@@ -69,7 +69,6 @@ const ScheduleCalendar = ({
   }, [calendar, weekID, month, year]);
 
   const previousMonth = () => {
-    // const minDate = new Date(calendar?.dates[0]);
     const minDate = new Date(calendar?.minDate);
     const newMonth = month - 1 < 0 ? 12 : month - 1;
     const newYear = month - 1 < 0 ? year - 1 : year;
@@ -80,7 +79,6 @@ const ScheduleCalendar = ({
   };
 
   const nextMonth = () => {
-    // const maxDate = new Date(calendar?.dates[calendar?.dates.length - 1]);
     const maxDate = new Date(calendar?.maxDate);
     const newMonth = month + 1 > 12 ? 0 : month + 1;
     const newYear = month + 1 > 12 ? year + 1 : year;
