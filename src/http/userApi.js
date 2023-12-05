@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { API_AUTH, const_url } from './consts';
+import { API_AUTH, constUrl } from './consts';
 
 /**/
 const authCheckInter = axios.create({
-  baseURL: const_url,
+  baseURL: constUrl,
 });
 
 // Добавляем интерцептор запросов
@@ -35,7 +35,7 @@ export const authCheck = () => authCheckInter.get(API_AUTH);
 
 /* */
 const loginInter = axios.create({
-  baseURL: const_url,
+  baseURL: constUrl,
 });
 
 export const login = async (userName, password) => {

@@ -12,7 +12,8 @@ import {
   File,
   FileJpg,
 } from '@phosphor-icons/react';
-import React from 'react';
+
+import { constUrl } from '../http/consts.js';
 
 const list_preview_format = [
   'pdf', 'jpeg', 'jpg', 'png', 'tiff',
@@ -109,19 +110,12 @@ const downloadFunc = (url) => {
 };
 
 export const handleDownload = (fileName, link, fileID = null) => {
-  if (!fileName) {
-    window.open(link);
-    return;
-  } else {
-    const baseUrl = 'https://stud.mgri.ru';
-    const url = `${baseUrl}/api/ElectronicEducation/Files/download?fileID=${fileID}`;
-    window.open(url, '_blank');
-    // downloadFunc(url);
+  if (fileName) {
+    window.open(`${constUrl}${link}`, '_blank');
     return;
   }
 
-  const url = `https://stud.mgri.ru${link}`;
-  const format_file = url.slice(url.lastIndexOf('.') + 1);
-
-  if (list_preview_format.find((e) => e === format_file) !== undefined) { window.open(url, '_blank'); } else { window.location.href = url; }
+  if (link) {
+    window.open(link);
+  }
 };

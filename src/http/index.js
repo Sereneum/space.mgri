@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { const_url } from './consts';
+import { constUrl } from './consts';
 
 const $host = axios.create({
-  baseURL: const_url,
+  baseURL: constUrl,
 });
 
 const $authHost = axios.create({
-  baseURL: const_url,
+  baseURL: constUrl,
   headers: {
     'Content-Type': 'multipart/form-data',
     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -25,7 +25,7 @@ const configHost = (token) => {
 };
 
 const $authServerHost = axios.create({
-  baseURL: const_url,
+  baseURL: constUrl,
   headers: {
     'Content-Type': 'multipart/form-data',
     Authorization: `Bearer ${localStorage.getItem('token')}`,

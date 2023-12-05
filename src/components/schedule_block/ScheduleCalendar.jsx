@@ -5,7 +5,7 @@ import {
   dateGetter,
   parserDateNow,
   toTextFormatMonth,
-} from '../../managers/timeManager';
+} from '../../managers/timeManager.js';
 
 const ScheduleCalendar = ({
   weekID,
@@ -24,7 +24,8 @@ const ScheduleCalendar = ({
 
   const [table, setTable] = useState([]);
 
-  const getDaysInCurrentMonth = () => Number(new Date(year, month + 1, 0).getDate());
+  const getDaysInCurrentMonth = () =>
+    Number(new Date(year, month + 1, 0).getDate());
 
   const fillTable = (calendar) => {
     const firstDay = new Date(year, month, 1).getDay();
@@ -33,11 +34,12 @@ const ScheduleCalendar = ({
     let value = 0;
     const mx = days - 1;
 
-    const isNow = (d1, d2) => d1.getFullYear() === d2.getFullYear()
-			&& d1.getMonth() === d2.getMonth()
-			&& d1.getDate() === d2.getDate();
+    const isNow = (d1, d2) =>
+      d1.getFullYear() === d2.getFullYear() &&
+      d1.getMonth() === d2.getMonth() &&
+      d1.getDate() === d2.getDate();
 
-    const rows = parseInt(((days + offset) / 7)) + (((days + offset) % 7) ? 1 : 0);
+    const rows = parseInt((days + offset) / 7) + ((days + offset) % 7 ? 1 : 0);
     const table = [];
     for (let i = 0; i < rows; ++i) {
       table.push([]);
@@ -67,21 +69,25 @@ const ScheduleCalendar = ({
   }, [calendar, weekID, month, year]);
 
   const previousMonth = () => {
-    const minDate = new Date(calendar?.dates[0]);
-    const new_month = month - 1 < 0 ? 12 : month - 1;
-    const new_year = month - 1 < 0 ? year - 1 : year;
-    const new_date = new Date(new_year, new_month, 1);
+    // const minDate = new Date(calendar?.dates[0]);
+    const minDate = new Date(calendar?.minDate);
+    const newMonth = month - 1 < 0 ? 12 : month - 1;
+    const newYear = month - 1 < 0 ? year - 1 : year;
+    const newDate = new Date(newYear, newMonth, 1);
 
-    return minDate.getMonth() <= new_date.getMonth();
+    return minDate.getMonth() <= newDate.getMonth()
+    && minDate.getFullYear() <= newDate.getFullYear();
   };
 
   const nextMonth = () => {
-    const maxDate = new Date(calendar?.dates[calendar?.dates.length - 1]);
-    const new_month = month + 1 > 12 ? 0 : month + 1;
-    const new_year = month + 1 > 12 ? year + 1 : year;
-    const new_date = new Date(new_year, new_month, 1);
+    // const maxDate = new Date(calendar?.dates[calendar?.dates.length - 1]);
+    const maxDate = new Date(calendar?.maxDate);
+    const newMonth = month + 1 > 12 ? 0 : month + 1;
+    const newYear = month + 1 > 12 ? year + 1 : year;
+    const newDate = new Date(newYear, newMonth, 1);
 
-    return maxDate.getMonth() >= new_date.getMonth();
+    return maxDate.getMonth() >= newDate.getMonth()
+    && maxDate.getFullYear() >= newDate.getFullYear();
   };
 
   const clickOnArrow = (offset) => {
@@ -94,70 +100,68 @@ const ScheduleCalendar = ({
   };
 
   return (
-		<CSSTransition
-			in={isVisible}
-			timeout={200}
-			classNames={'my-node'}
-			unmountOnExit
-		>
-			<div className='calendar'>
-				<div className='calendar-fader'></div>
-				<div className='head'>
-					<CaretDown
-						weight='bold'
-						className={`arrow ${!previousMonth() && 'passiveArrow'}`}
-						style={{ rotate: '90deg' }}
-						onClick={() => previousMonth() && clickOnArrow(-1)}
-					/>
-					<div className='month'>{`${toTextFormatMonth(month)}, ${year}`}</div>
-					<CaretDown
-						weight='bold'
-						className={`arrow ${!nextMonth() && 'passiveArrow'}`}
-						style={{ rotate: '270deg' }}
-						onClick={() => {
-						  nextMonth() && clickOnArrow(+1);
-						}}
-					/>
-				</div>
+    <CSSTransition
+      in={isVisible}
+      timeout={200}
+      classNames={'my-node'}
+      unmountOnExit
+    >
+      <div className="calendar">
+        <div className="calendar-fader"></div>
+        <div className="head">
+          <CaretDown
+            weight="bold"
+            className={`arrow ${!previousMonth() && 'passiveArrow'}`}
+            style={{ rotate: '90deg' }}
+            onClick={() => previousMonth() && clickOnArrow(-1)}
+          />
+          <div className="month">{`${toTextFormatMonth(month)}, ${year}`}</div>
+          <CaretDown
+            weight="bold"
+            className={`arrow ${!nextMonth() && 'passiveArrow'}`}
+            style={{ rotate: '270deg' }}
+            onClick={() => {
+              nextMonth() && clickOnArrow(+1);
+            }}
+          />
+        </div>
 
-				{table.length && (
-					<table className='calendar_box'>
-						<thead className='days'>
-							<tr className='days-container'>
-								{['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((i, ind) => (
-									<th key={i + ind}><p>{i}</p></th>
-								))}
-							</tr>
-						</thead>
+        {table.length && (
+          <table className="calendar_box">
+            <thead className="days">
+              <tr className="days-container">
+                {['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((i, ind) => (
+                  <th key={i + ind}>
+                    <p>{i}</p>
+                  </th>
+                ))}
+              </tr>
+            </thead>
 
-						<tbody className='calendar_date_pool'>
-							{table.map((rows, rowIndex) => (
-								<tr key={`r${rowIndex}`}>
-									{rows.map((colm, colmIndex) => (
-										<td
-											key={`c${rowIndex * 7 + colmIndex}`}
-											className={`${
-											  colm.isNow ? 'isNow' : ''
-											}`}
-											onClick={() => click(colm)}
-										>
-											<p
-												key={`c${rowIndex * 7 + colmIndex}`}
-												className={`${
-												  colm.isOk ? 'isOk' : ''
-												}`}
-											>
-												{colm.value}
-											</p>
-										</td>
-									))}
-								</tr>
-							))}
-						</tbody>
-					</table>
-				)}
-			</div>
-		</CSSTransition>
+            <tbody className="calendar_date_pool">
+              {table.map((rows, rowIndex) => (
+                <tr key={`r${rowIndex}`}>
+                  {rows.map((colm, colmIndex) => (
+                    <td
+                      key={`c${rowIndex * 7 + colmIndex}`}
+                      className={`${colm.isNow ? 'isNow' : ''}`}
+                      onClick={() => click(colm)}
+                    >
+                      <p
+                        key={`c${rowIndex * 7 + colmIndex}`}
+                        className={`${colm.isOk ? 'isOk' : ''}`}
+                      >
+                        {colm.value}
+                      </p>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </CSSTransition>
   );
 };
 

@@ -1,5 +1,8 @@
-// export const const_url = process.env.REACT_APP_MODE === 'prod' ? process.env.REACT_APP_STUD_API : process.env.REACT_APP_API_URL;
-export const const_url = 'https://stud.mgri.ru/';
+// export const const_url =
+// process.env.REACT_APP_MODE === 'prod'
+// ? process.env.REACT_APP_STUD_API
+// : process.env.REACT_APP_API_URL;
+export const constUrl = 'https://stud.mgri.ru/';
 
 export const API_AUTH = 'api/tokenauth';
 export const API_COURSE = 'api/ElectronicEducation/Task?courseID=';
