@@ -1,14 +1,11 @@
-import React from 'react';
 import {
   CalendarBlank,
   ChatCircle,
   Clock,
   GraduationCap,
 } from '@phosphor-icons/react';
-import { formatDistance, formatDistanceToNow } from 'date-fns';
 
-import moment from 'moment';
-import { getStatusIcon } from '../../managers/statusManager';
+import getStatusIcon from '../../managers/statusManager.jsx';
 import 'moment/locale/ru';
 import { timeManager } from '../../managers/timeManager'; // Подключаем русскую локаль
 

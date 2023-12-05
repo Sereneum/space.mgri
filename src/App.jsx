@@ -8,9 +8,9 @@ import { CSSTransition } from 'react-transition-group';
 import ScrollToTop from './components/scroll_to_top/ScrollToTop.jsx';
 
 import Sky from './components/sky/Sky.jsx';
-import Header from './components/header/Header.js';
-import Courses from './components/courses_block/Courses.js';
-import Deadline from './components/deadline_block/Deadline.js';
+import Header from './components/header/Header.jsx';
+import Courses from './components/courses_block/Courses.jsx';
+import Deadline from './components/deadline_block/Deadline.jsx';
 import { Context } from './index.jsx';
 import useApp from './hooks/useApp.js';
 import { themeManager } from './managers/themeManager.js';

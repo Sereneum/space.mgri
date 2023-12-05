@@ -5,9 +5,8 @@ import {
   WarningCircle,
   X,
 } from '@phosphor-icons/react';
-import React from 'react';
 
-export default getStatusIcon = (statusID) => {
+const getStatusIcon = (statusID) => {
   if (statusID === 0) {
     return {
       color: 'not_checked',
@@ -44,3 +43,5 @@ export default getStatusIcon = (statusID) => {
     };
   }
 };
+
+export default getStatusIcon;

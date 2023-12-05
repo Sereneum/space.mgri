@@ -1,16 +1,19 @@
 /* eslint-disable import/extensions */
-import { useContext, useEffect, useState } from 'react';
-import { observer } from 'mobx-react-lite';
-import { Context } from '../../index.jsx';
-import { epoch_getMinorUserData, epoch_schedule } from '../../http/epochServer.js';
-import ScheduleController from './ScheduleController';
-import ScheduleWeek from './ScheduleWeek';
-import { pointToSlash } from '../../managers/timeManager';
-import { sch_parser } from '../../managers/schManager';
-import LoaderSchedule from '../loaders/LoaderSchedule';
+import { useContext, useEffect, useState } from "react";
+import { observer } from "mobx-react-lite";
+import { Context } from "../../index.jsx";
+import {
+  epoch_getMinorUserData,
+  epoch_schedule,
+} from "../../http/epochServer.js";
+import ScheduleController from "./ScheduleController.jsx";
+import ScheduleWeek from "./ScheduleWeek.jsx";
+import { pointToSlash } from "../../managers/timeManager.js";
+import { sch_parser } from "../../managers/schManager.js";
+import LoaderSchedule from "../loaders/LoaderSchedule.jsx";
 
 const Schedule = observer(() => {
-  const { user, localConfig } = useContext(Context);
+  const { user } = useContext(Context);
   // const [weekData, setWeekData] = useState({})
   // const [weekID, setWeekID] = useState(pointToSlash(new Date())); // pointToSlash(new Date())
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +27,9 @@ const Schedule = observer(() => {
     const isCalendar = !!Object.keys(user.calendar).length;
 
     if (isEmptyMinor) {
-      await epoch_getMinorUserData(id).then((r) => user.setMinorUserData(r.data.data));
+      await epoch_getMinorUserData(id).then((r) =>
+        user.setMinorUserData(r.data.data)
+      );
     }
 
     const groupID = user.minorUserData.group.item2;
@@ -37,10 +42,11 @@ const Schedule = observer(() => {
   };
 
   const logic = (week = null) => {
-    if (!week) { week = pointToSlash(new Date()); }
+    if (!week) {
+      week = pointToSlash(new Date());
+    }
     user.setWeekID(week);
-    sequence(week)
-      .then((r) => { });
+    sequence(week).then((r) => {});
   };
 
   useEffect(() => {
@@ -58,8 +64,8 @@ const Schedule = observer(() => {
 
   if (isLoading) {
     return (
-      <div className='block'>
-        <div className='title_container'>
+      <div className="block">
+        <div className="title_container">
           <h1>Расписание</h1>
         </div>
         <LoaderSchedule />
@@ -68,9 +74,9 @@ const Schedule = observer(() => {
   }
 
   return (
-    <div className={'block'} style={{ overflow: 'visible' }}>
+    <div className={"block"} style={{ overflow: "visible" }}>
       {/* TITLE */}
-      <div className='title_container'>
+      <div className="title_container">
         <h1>Расписание</h1>
       </div>
 

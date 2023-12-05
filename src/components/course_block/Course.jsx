@@ -13,11 +13,11 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import Materials from '../materials/Materials.js';
-import { Context } from '../../index';
+import Materials from '../materials/Materials.jsx';
+import { Context } from '../../index.jsx';
 import CourseItem from './CourseItem.jsx';
-import LoaderCourse from '../loaders/LoaderCourse.js';
-import CourseInfo from './CourseInfo.jsx';
+import LoaderCourse from '../loaders/LoaderCourse.jsx';
+
 
 const Course = observer(() => {
   const { courseData } = useContext(Context);

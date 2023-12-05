@@ -1,6 +1,6 @@
 import { CaretRight } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router-dom';
-import { getStatusIcon } from '../../managers/statusManager';
+import getStatusIcon from '../../managers/statusManager.jsx';
 
 const CourseItem = ({ item, isBreaker }) => {
   // console.log(item)
