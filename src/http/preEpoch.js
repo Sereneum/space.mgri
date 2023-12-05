@@ -4,7 +4,7 @@ import { epoch_courseData } from "./epochServer";
 
 const preEpoch_deadlineParser = deadline => {
   let hours = (Date.parse(deadline) - Date.now()) / (1000 * 60 * 60) + 24
-  return hours > 0 ? Math.round(hours) : 0
+  return hours > 0 ? Math.round(hours) : 0;
 }
 
 export const preEpoch_mergeCourseData = (user_data, duty_data, course_id, course_name = '') => {

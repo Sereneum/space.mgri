@@ -86,7 +86,7 @@ const useApp = () => {
     authCheck()
       .then((r) => {
         devPrint('authCheck: ');
-        // devPrint('process.env', process.env);
+        devPrint('process.env', process.env);
         if (!user.isAuth) user.setIsAuth(true);
         user.setUserData(r.data.data.user);
         const id = r.data.data.user.anotherID;
