@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import ReactDOM from 'react-dom/client';
 import { createContext } from 'react';
 import { BrowserRouter } from 'react-router-dom';
